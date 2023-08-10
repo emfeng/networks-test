@@ -1,0 +1,22 @@
+
+x-common-settings: &common_settings
+  networks:
+    - default
+    - postgres
+    - redis
+    - mysql
+services:
+  web:
+    <<: *common_settings
+    image: nginx
+  queue:
+    <<: *common_settings
+    image: eclipse-mosquitto
+
+networks:
+  postgres:
+    external: true
+  redis:
+    external: true
+  mysql:
+    external: true

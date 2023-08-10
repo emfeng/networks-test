@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:11
+    restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+    networks:
+      - postgres
+    environment:
+      POSTGRES_PASSWORD: postgresspassword
+    ports:
+      - 5432:5432
+    logging:
+      options:
+        max-size: 50m
+
+networks:
+  postgres:
+    name: postgres
+    driver: bridge
+
+volumes:
+  data:

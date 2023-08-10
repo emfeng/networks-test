@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: mysql:8
+    restart: always
+    volumes:
+      - data:/var/lib/mysql
+    networks:
+      - mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlpassword
+    ports:
+      - 3306:3306
+    logging:
+      options:
+        max-size: 50m
+
+networks:
+  mysql:
+    name: mysql
+    driver: bridge
+
+volumes:
+  data:

@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: redis:7
+    restart: always
+    volumes:
+      - data:/data
+    networks:
+      - redis
+    ports:
+      - 6379:6379
+    logging:
+      options:
+        max-size: 50m
+
+networks:
+  redis:
+    name: redis
+    driver: bridge
+
+volumes:
+  data:
